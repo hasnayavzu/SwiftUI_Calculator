@@ -7,43 +7,17 @@
 
 import SwiftUI
 
-enum CalculatorButton: String {
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
-    case nine = "9"
-    case zero = "0"
-    case add = "+"
-    case subtract = "-"
-    case divide = "÷"
-    case multiply = "x"
-    case equal = "="
-    case clear = "AC"
-    case decimal = "."
-    case percent = "%"
-    case negative = "+/-"
-}
-
 struct ContentView: View {
-    
-    let buttons: [[CalculatorButton]] = [
-        [.clear, .negative, .percent, .divide],
-        [.seven, .eight, .nine, .multiply],
-        [.four, .five, .six, .subtract],
-        [.one, .two, .three, .add],
-        [.zero, .decimal, .equal,],
-    ]
     
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack {
+                Spacer()
+                
+                // Text display
+                
                 HStack {
                     Spacer()
                     Text("0")
@@ -53,11 +27,11 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                ForEach(buttons, id: \.self) { row in
+                ForEach(ButtonModel().buttons, id: \.self) { row in
                     HStack(spacing: 12) {
                         ForEach(row, id: \.self) { item in
                             Buttons(buttonText: item.rawValue,
-                                    buttonColor: Color.orange,
+                                    buttonColor: item.buttonColor,
                                     width: buttonWidth(),
                                     height: buttonHeight(),
                                     cornerRadius: buttonWidth() / 2  )
