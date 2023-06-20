@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var value = "0"
+    
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
@@ -20,9 +22,9 @@ struct ContentView: View {
                 
                 HStack {
                     Spacer()
-                    Text("0")
+                    Text(value)
                         .bold()
-                        .font(.system(size: 64))
+                        .font(.system(size: 70))
                         .foregroundColor(.white)
                 }
                 .padding()
@@ -32,9 +34,9 @@ struct ContentView: View {
                         ForEach(row, id: \.self) { item in
                             Buttons(buttonText: item.rawValue,
                                     buttonColor: item.buttonColor,
-                                    width: buttonWidth(),
+                                    width: buttonWidth(item: item),
                                     height: buttonHeight(),
-                                    cornerRadius: buttonWidth() / 2  )
+                                    cornerRadius: buttonHeight() / 2)
                         }
                     }
                 }
@@ -43,7 +45,10 @@ struct ContentView: View {
         }
     }
     
-    func buttonWidth() -> CGFloat {
+    func buttonWidth(item: ButtonModel.CalculatorButton) -> CGFloat {
+        if item == .zero {
+            return ((UIScreen.main.bounds.width - (4*12)) / 4 ) * 2
+        }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
     
