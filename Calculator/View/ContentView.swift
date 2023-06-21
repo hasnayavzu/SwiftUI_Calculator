@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State var value = "0"
+    @State var currentOperation: ButtonModel.Operations = .none
+    @State var runningNumber = 0
     
     var body: some View {
         ZStack {
@@ -32,15 +34,57 @@ struct ContentView: View {
                 ForEach(ButtonModel().buttons, id: \.self) { row in
                     HStack(spacing: 12) {
                         ForEach(row, id: \.self) { item in
-                            Buttons(buttonText: item.rawValue,
-                                    buttonColor: item.buttonColor,
-                                    width: buttonWidth(item: item),
-                                    height: buttonHeight(),
-                                    cornerRadius: buttonHeight() / 2)
+                            Button(action: {
+                                self.didTap(button: item)
+                            }, label: {
+                                Text(item.rawValue)
+                                    .font(.system(size: 32))
+                                    .frame(width: self.buttonWidth(item: item),
+                                           height: self.buttonHeight()
+                                    )
+                                    .background(item.buttonColor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(self.buttonWidth(item: item) / 2)
+                            })
                         }
                     }
                 }
                 .padding(.bottom, 3)
+            }
+        }
+    }
+    
+    func didTap(button: ButtonModel.CalculatorButton) {
+        switch button {
+        case .add, .subtract, .multiply, .divide, .equal:
+            if button == .add {
+                self.currentOperation = .add
+                self.runningNumber = Int(self.value) ?? 0
+            } else if button == .subtract {
+                self.currentOperation = .subtract
+                self.runningNumber = Int(self.value) ?? 0
+            } else if button == .multiply {
+                self.currentOperation = .multiply
+                self.runningNumber = Int(self.value) ?? 0
+            } else if button == .divide {
+                self.currentOperation = .divide
+                self.runningNumber = Int(self.value) ?? 0
+            } else if button == .equal {
+                let current = self.runningNumber
+                
+            }
+        case .clear:
+            self.value = "0"
+            break
+        case .decimal, .negative, .percent:
+            break
+        default:
+            let number = button.rawValue
+            if self.value == "0" {
+                value = number
+            }
+            else {
+                self.value = "\(self.value)\(number)"
             }
         }
     }

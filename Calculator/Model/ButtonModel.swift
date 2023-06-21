@@ -10,6 +10,10 @@ import SwiftUI
 
 struct ButtonModel {
     
+    public enum Operations {
+        case add, subtract, multiply, divide, equal, none
+    }
+    
     public enum CalculatorButton: String {
         case one = "1"
         case two = "2"
