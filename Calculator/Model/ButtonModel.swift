@@ -11,7 +11,7 @@ import SwiftUI
 struct ButtonModel {
     
     public enum Operations {
-        case add, subtract, multiply, divide, equal, none
+        case add, subtract, multiply, divide, none
     }
     
     public enum CalculatorButton: String {
