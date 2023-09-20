@@ -11,7 +11,7 @@ struct ContentView: View {
     @State var value = "0"
     @State var currentOperation: ButtonModel.Operations = .none
     @State var runningNumber = 0.0
-    @State var selectedColor: CGColor = Color(.red)
+    @State var selectedColor: Color = .red
 
     var body: some View {
         ZStack {
@@ -21,8 +21,6 @@ struct ContentView: View {
                 Spacer()
 
                 // Text display
-                Text("asd")
-                    .foregroundColor(.white)
 
                 HStack {
                     Spacer()
