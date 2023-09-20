@@ -31,7 +31,7 @@ struct ButtonModel {
         case multiply = "x"
         case equal = "="
         case clear = "AC"
-        case decimal = "."
+        case decimal = ","
         case percent = "%"
         case negative = "+/-"
         

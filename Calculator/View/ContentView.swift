@@ -11,6 +11,7 @@ struct ContentView: View {
     @State var value = "0"
     @State var currentOperation: ButtonModel.Operations = .none
     @State var runningNumber = 0.0
+    @State var selectedColor: CGColor = Color(.red)
 
     var body: some View {
         ZStack {
@@ -20,6 +21,8 @@ struct ContentView: View {
                 Spacer()
 
                 // Text display
+                Text("asd")
+                    .foregroundColor(.white)
 
                 HStack {
                     Spacer()
@@ -90,12 +93,19 @@ struct ContentView: View {
             break
         case .decimal, .negative, .percent:
             if button == .decimal {
+                if value.contains(",") {
+                    value = value
+                } else {
+                    value = value + ","
+                }
             } else if button == .negative {
                 if value.first! != "-" {
                     value = "-" + value
                 } else {
                     value.remove(at: value.startIndex)
                 }
+            } else if button == .percent {
+                value = String(Double(value)! / 100)
             }
             break
         default:
