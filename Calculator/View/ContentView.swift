@@ -12,10 +12,14 @@ struct ContentView: View {
     @State var currentOperation: ButtonModel.Operations = .none
     @State var runningNumber = 0.0
     @State var selectedColor: Color = .red
+    @State var backgroundColor = Color(.black)
 
     var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .top) {
+            backgroundColor.edgesIgnoringSafeArea(.all)
+
+            ColorPicker("", selection: $backgroundColor)
+                .padding()
 
             VStack {
                 Spacer()
