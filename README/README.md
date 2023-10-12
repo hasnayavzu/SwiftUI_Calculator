@@ -6,5 +6,5 @@
 
 # Dark & Light Mode
 
-![Dark Mode](/ Users / hasanyavuz / Desktop / Darkmode.PNG)
-![Light Mode](/ Users / hasanyavuz / Desktop / Lightmode.PNG)
+![Dark Mode](Darkmode.PNG)
+![Light Mode](Lightmode.PNG)
