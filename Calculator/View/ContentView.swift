@@ -12,26 +12,24 @@ struct ContentView: View {
     @State var currentOperation: ButtonModel.Operations = .none
     @State var runningNumber = 0.0
     @State var selectedColor: Color = .red
-    @State var backgroundColor = Color(.black)
+    @State var backgroundColor = Color("Background")
 
     var body: some View {
         ZStack(alignment: .top) {
             backgroundColor.edgesIgnoringSafeArea(.all)
 
-            ColorPicker("", selection: $backgroundColor)
-                .padding()
-
             VStack {
                 Spacer()
 
-                // Text display
+                
 
                 HStack {
                     Spacer()
                     Text(value)
                         .bold()
                         .font(.system(size: 70))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("ForeGround"))
+                        .lineLimit(1)
                 }
                 .padding()
 
@@ -46,9 +44,12 @@ struct ContentView: View {
                                     .frame(width: self.buttonWidth(item: item),
                                            height: self.buttonHeight()
                                     )
-                                    .background(item.buttonColor)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(self.buttonWidth(item: item) / 2)
+                                    .background(Color("Background"))
+                                    .foregroundColor(Color("ForeGround"))
+                                    .cornerRadius(35)
+                                    //.cornerRadius(self.buttonWidth(item: item) / 2)
+                                    .shadow(color: Color("DarkShadow").opacity(0.2), radius: 10, x: 10, y: 10)
+                                    .shadow(color: Color("LightShadow").opacity(0.7), radius:10, x: -5, y: -5)
                             })
                         }
                     }
@@ -122,7 +123,7 @@ struct ContentView: View {
 
     func buttonWidth(item: ButtonModel.CalculatorButton) -> CGFloat {
         if item == .zero {
-            return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
+            return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2 + 6
         }
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
