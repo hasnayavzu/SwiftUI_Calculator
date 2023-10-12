@@ -6,5 +6,5 @@
 
 # Dark & Light Mode
 
-![Dark Mode](images / Darkmode.PNG)
-![Light Mode](images / Lightmode.PNG)
+![Dark Mode](images/Darkmode.PNG)
+![Light Mode](images/Lightmode.PNG)
